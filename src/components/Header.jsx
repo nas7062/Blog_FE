@@ -53,13 +53,13 @@ export const Header = () => {
             <>
               <MenuLike to="/register" label="회원가입" closeMenu={closeMenu} />
               <MenuLike to="/login" label="로그인" closeMenu={closeMenu} />
-              {/* <MenuLike to="/createPost" label="글쓰기" /> */}
-              {/* <MenuLike to="/mypage" label="마이페이지" /> */}
             </>
           ) : (
             <>
               <div>{nickname}님 환영합니다</div>
               <div onClick={handleLogout}>로그아웃</div>
+              <MenuLike to="/createPost" label="글쓰기" closeMenu={closeMenu} />
+              <MenuLike to="/mypage" label="마이페이지" closeMenu={closeMenu} />
             </>
           )}
         </div>
