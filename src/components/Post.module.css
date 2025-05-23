@@ -1,0 +1,63 @@
+.box {
+  width: 100%;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 50px 1fr 50px;
+}
+
+.imgwrap {
+  width: calc(100% - 2rem);
+  height: 100%;
+  overflow: hidden;
+  margin: auto;
+  grid-row: 1/3;
+  border-radius: 12px;
+}
+
+.titlewrap {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.title,
+.summary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.summary {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.imgwrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infowarp {
+  display: flex;
+  gap: 10px;
+  align-self: center;
+  justify-self: center;
+}
+
+.content {
+  width: 380px;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.plus {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
