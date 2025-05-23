@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import css from './registerpage.module.css'
 import { registerUser } from '../apis/userApi'
+import { useNavigate } from 'react-router-dom'
 
 export const RegisterPage = () => {
   const {
@@ -11,12 +12,15 @@ export const RegisterPage = () => {
   } = useForm({ mode: 'onBlur' })
   /*useForm 안에 mode 를 onChange 로 설정하면 실시간으로 유효성 검사가 가능
   onBlur는 입력 후 빠져나가면 유효성 검사 */
+  const navigate = useNavigate()
   const password = watch('password') //현재 비밀번호 필드 값
 
   const onSubmit = async data => {
     try {
-      const response = await registerUser(data)
-      console.log(response)
+      await registerUser(data)
+      setTimeout(() => {
+        navigate('/login')
+      }, 300)
     } catch (error) {
       console.log(error)
     }
