@@ -1,26 +1,33 @@
-.container {
+.createpost {
   width: calc(100% - 2em);
   margin: auto;
-
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
-.container input {
-  padding: 1em;
+.createpost label {
+  font-size: 1.5em;
+}
+
+.createpost input {
+  padding: 0.5em 1em;
   border-radius: 0.25em;
   border: 1px solid lightblue;
   outline: none;
 }
-.container input:focus {
+.createpost input[type='file'] {
+  border: none;
+}
+
+.createpost input:focus {
   background-color: lightblue;
 }
-.container strong {
+.createpost strong {
   font-weight: normal;
   font-size: 0.75em;
 }
-.container button {
+.createpost button {
   padding: 1em;
   background-color: lightskyblue;
   border-radius: 1em;
