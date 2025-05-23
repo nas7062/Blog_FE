@@ -3,6 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+body,
+html,
+main {
+  overflow: auto;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 a {
   text-decoration: none;
   color: inherit;
