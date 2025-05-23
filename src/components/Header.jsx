@@ -7,8 +7,7 @@ import { setNickName } from '../store/userslice'
 
 export const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false)
-  const user = useSelector(state => state.user)
-  const nickname = user?.nickname
+  const nickname = useSelector(state => state.user.nickname)
   const dispatch = useDispatch()
   const toggleMenu = () => {
     setIsMenuActive(prev => !prev)
@@ -40,11 +39,11 @@ export const Header = () => {
       dispatch(setNickName(null))
     }
   }
-  console.log(user, nickname)
+
   return (
     <header className={css.header}>
       <h1>
-        <Link to={'/'}>TOKTOKLOG</Link>
+        <Link to={'/'}>10012g</Link>
       </h1>
       <Hamburger isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
       <nav className={css.gnbCon}>
