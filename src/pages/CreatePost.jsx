@@ -26,7 +26,7 @@ export const CreatePost = () => {
   }, [user, navigate])
 
   const onSubmit = async data => {
-    const { title, summary, files, content } = data
+    const { title, summary, file, content } = data
 
     // FormData 객체 생성 (파일 포함 폼 데이터를 위해 사용)
     const formData = new FormData()
@@ -35,8 +35,8 @@ export const CreatePost = () => {
     formData.set('content', content)
 
     // 파일이 존재하면 추가
-    if (files && files.length > 0) {
-      formData.set('files', files[0])
+    if (file && file.length > 0) {
+      formData.set('files', file[0])
     }
     console.log(formData)
     try {
@@ -66,8 +66,8 @@ export const CreatePost = () => {
           })}
         />
         {errors.summary && <strong>{errors.summary.message}</strong>}
-        <label htmlFor="files">파일</label>
-        <input id="files" type="file" accept="image/*" {...register('files')} />
+        <label htmlFor="file">파일</label>
+        <input id="file" type="file" accept="image/*" {...register('file')} />
         <label htmlFor="content">내용</label>
         <div className={css.editorWrapper}>
           {/* QuillEditor는 일반 input이 아니기 때문에 Controller로 감싼다 */}
