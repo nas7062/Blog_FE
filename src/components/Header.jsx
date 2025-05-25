@@ -20,7 +20,7 @@ export const Header = () => {
     const getUser = async () => {
       try {
         const userData = await getUserProfile()
-        console.log(userData.nickname)
+
         if (userData) dispatch(setNickName(userData.nickname))
       } catch (error) {
         console.log(error)
@@ -43,7 +43,7 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <h1>
-        <Link to={'/'}>10012g</Link>
+        <Link to={'/'}>10012</Link>
       </h1>
       <Hamburger isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
       <nav className={css.gnbCon}>
