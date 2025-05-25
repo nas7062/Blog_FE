@@ -13,3 +13,8 @@ export const getAllPost = async (page = 0, limit = 3) => {
   })
   return response.data
 }
+
+export const getByIdPost = async postId => {
+  const response = await axios.get(`${API_URL}/detail/${postId}`)
+  return response.data
+}
