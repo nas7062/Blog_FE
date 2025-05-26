@@ -36,7 +36,9 @@ export const Comments = ({ postId }) => {
         postId: postId,
       }
       await createComment(commentData)
-
+      const updatedComments = await getComment(postId)
+      setComments(updatedComments)
+      setNewComment('')
       setIsLoading(false)
     } catch (error) {
       console.error('댓글 등록 실패:', error)
