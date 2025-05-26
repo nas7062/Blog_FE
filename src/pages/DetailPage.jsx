@@ -9,7 +9,6 @@ const DetailPage = () => {
   const [post, setPost] = useState('')
   const { nickname } = useSelector(state => state.user)
   const navigate = useNavigate()
-  console.log(nickname)
   const { title, cover, content, summary, createdAt, author } = post
   useEffect(() => {
     const getPost = async () => {

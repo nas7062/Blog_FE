@@ -5,7 +5,7 @@
 }
 
 .imgwrap {
-  width: calc(100% - 2rem);
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
@@ -15,17 +15,22 @@
 .imgwrap img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .titlewrap,
 .sumwrap {
   display: flex;
   justify-content: space-between;
-  width: calc(100% - 2rem);
+  width: 100%;
 }
 
 .summary {
   color: gray;
+}
+
+.content {
+  width: 100%;
 }
 
 .titlewrap > p,
@@ -38,6 +43,7 @@
   display: flex;
 }
 .btnarea {
+  width: 100%;  
   padding: 0.5rem 0;
   display: flex;
   gap: 1rem;

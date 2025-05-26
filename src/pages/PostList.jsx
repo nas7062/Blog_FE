@@ -44,7 +44,6 @@ export const PostList = () => {
       }
     }
     getPost()
-    console.log(page)
   }, [page])
   return (
     <main>

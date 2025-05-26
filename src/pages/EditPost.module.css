@@ -1,0 +1,47 @@
+.Editpost {
+  width: calc(100% - 2em);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.Editpost label {
+  font-size: 1.5em;
+}
+
+.Editpost input {
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  border: 1px solid lightblue;
+  outline: none;
+}
+.Editpost input[type='file'] {
+  border: none;
+}
+
+.createpEditpostost input:focus {
+  background-color: lightblue;
+}
+.Editpost strong {
+  font-weight: normal;
+  font-size: 0.75em;
+}
+.Editpost button {
+  padding: 1em;
+  background-color: lightskyblue;
+  border-radius: 1em;
+  align-self: center;
+}
+
+img {
+  height: 300px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.container {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+  padding: 2em 1em;
+}

@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/LoginPage'
 import { CreatePost } from '../pages/CreatePost'
 import { PostList } from '../pages/PostList'
 import DetailPage from '../pages/DetailPage'
+import EditPost from '../pages/EditPost'
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: '/detail/:postId',
         element: <DetailPage />,
+      },
+      {
+        path: 'edit/:postId',
+        element: <EditPost />,
       },
     ],
   },
