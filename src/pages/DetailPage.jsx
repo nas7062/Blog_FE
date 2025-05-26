@@ -4,6 +4,7 @@ import { deletePost, getByIdPost } from '../apis/postApi'
 import css from './DetailPage.module.css'
 import { formatDate } from '../utils/features'
 import { useSelector } from 'react-redux'
+import LikeButton from '../components/LikeButton'
 const DetailPage = () => {
   const { postId } = useParams()
   const [post, setPost] = useState('')
@@ -35,6 +36,7 @@ const DetailPage = () => {
       <div className={css.imgwrap}>
         <img src={`${import.meta.env.VITE_API_URL}/${cover}`} alt={title} />
       </div>
+      {nickname && <LikeButton postId={postId} likes={post.likes} />}
       <div className={css.titlewrap}>
         <h3>{title}</h3>
         <p>{author}</p>

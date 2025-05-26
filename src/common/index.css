@@ -30,3 +30,7 @@ h2 {
   font-size: 1.5rem;
   padding: 2rem 1rem;
 }
+
+.like {
+  cursor: pointer;
+}

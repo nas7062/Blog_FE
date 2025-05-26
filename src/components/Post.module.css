@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 50px 1fr 50px;
+  cursor: pointer;
 }
 
 .imgwrap {
@@ -60,4 +61,8 @@
   gap: 10px;
   justify-content: space-around;
   align-items: center;
+}
+
+.plus span {
+  cursor: pointer;
 }
