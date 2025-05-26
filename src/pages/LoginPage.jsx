@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import css from './registerpage.module.css'
 import { loginUser } from '../apis/userApi'
 import { useDispatch } from 'react-redux'
-import { setNickName } from '../store/userslice'
+import { setUser } from '../store/userslice'
 import { useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
@@ -15,8 +15,8 @@ export const LoginPage = () => {
   const navigate = useNavigate()
   const onSubmit = async data => {
     try {
-      const response = await loginUser(data)
-      dispatch(setNickName(response))
+      const { _id, nickname } = await loginUser(data)
+      dispatch(setUser(_id, nickname))
       navigate('/')
     } catch (error) {
       console.log(error)

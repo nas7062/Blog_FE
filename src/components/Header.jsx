@@ -3,11 +3,11 @@ import css from './header.module.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile, logoutUser } from '../apis/userApi'
-import { setNickName } from '../store/userslice'
+import { clearUser, setUser } from '../store/userslice'
 
 export const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false)
-  const nickname = useSelector(state => state.user.nickname)
+  const { _id, nickname } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const toggleMenu = () => {
     setIsMenuActive(prev => !prev)
@@ -20,11 +20,15 @@ export const Header = () => {
     const getUser = async () => {
       try {
         const userData = await getUserProfile()
-
-        if (userData) dispatch(setNickName(userData.nickname))
+        if (userData) {
+          // 이제 setUser 액션으로 id, nickname 둘 다 저장
+          dispatch(setUser({ _id: userData._id, nickname: userData.nickname }))
+        } else {
+          dispatch(clearUser())
+        }
       } catch (error) {
         console.log(error)
-        dispatch(setNickName(null))
+        dispatch(clearUser())
       }
     }
     getUser()
@@ -32,11 +36,11 @@ export const Header = () => {
   const handleLogout = async () => {
     try {
       await logoutUser()
-      dispatch(setNickName(null))
+      dispatch(clearUser())
       setIsMenuActive(false)
     } catch (error) {
       console.log(error)
-      dispatch(setNickName(null))
+      dispatch(clearUser())
     }
   }
 
