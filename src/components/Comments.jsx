@@ -3,6 +3,7 @@ import css from './comments.module.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { createComment, getComment } from '../apis/commentApi'
+import { formatDate } from '../utils/features'
 
 export const Comments = ({ postId }) => {
   const { nickname } = useSelector(state => state.user)
@@ -66,19 +67,25 @@ export const Comments = ({ postId }) => {
       )}
 
       <ul>
-        {comments.map(comment => (
-          <li key={comment._id} className={css.list}>
-            <div className={css.commnet}>
-              <p className={css.author}>{comment.author}</p>
-              <p className={css.date}>{comment.createdAt}</p>
-              <p className={css.text}>{comment.content}</p>
-            </div>
-            <div className={css.btns}>
-              <button>수정</button>
-              <button>삭제</button>
-            </div>
-          </li>
-        ))}
+        {comments.length !== 0 ? (
+          comments.map(comment => (
+            <li key={comment._id} className={css.list}>
+              <div className={css.commnet}>
+                <p className={css.author}>{comment.author}</p>
+                <p className={css.date}>{formatDate(comment.createdAt)}</p>
+                <p className={css.text}>{comment.content}</p>
+              </div>
+              {nickname === comment.author && (
+                <div className={css.btns}>
+                  <button>수정</button>
+                  <button>삭제</button>
+                </div>
+              )}
+            </li>
+          ))
+        ) : (
+          <div>댓글이 없습니다...</div>
+        )}
       </ul>
     </section>
   )
