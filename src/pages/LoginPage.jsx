@@ -13,11 +13,15 @@ export const LoginPage = () => {
   } = useForm({ mode: 'onBlur' })
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const onSubmit = async data => {
     try {
       const { _id, nickname } = await loginUser(data)
-      dispatch(setUser(_id, nickname))
-      navigate('/')
+      console.log(_id, nickname)
+      dispatch(setUser({ _id, nickname }))
+      setTimeout(() => {
+        navigate('/')
+      }, 300)
     } catch (error) {
       console.log(error)
     }
@@ -38,7 +42,7 @@ export const LoginPage = () => {
             },
           })}
         />
-        {errors.nickname && <strong>{errors.nickname.message}</strong>}
+        {errors.email && <strong>{errors.email.message}</strong>}
         {/* 비밀번호 */}
         <input
           type="password"
@@ -53,7 +57,7 @@ export const LoginPage = () => {
         />
         {errors.password && <strong>{errors.password.message}</strong>}
         <button type="submit" disabled={isSubmitting}>
-          로그인
+          {isSubmitting ? '로그인 중...' : '로그인'}
         </button>
       </form>
     </main>

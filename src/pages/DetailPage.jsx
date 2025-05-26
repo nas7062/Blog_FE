@@ -5,6 +5,7 @@ import css from './DetailPage.module.css'
 import { formatDate } from '../utils/features'
 import { useSelector } from 'react-redux'
 import LikeButton from '../components/LikeButton'
+import { Comments } from '../components/Comments'
 const DetailPage = () => {
   const { postId } = useParams()
   const [post, setPost] = useState('')
@@ -55,6 +56,7 @@ const DetailPage = () => {
         )}
         <Link to={'/'}>목록으로</Link>
       </div>
+      <Comments postId={postId} />
     </main>
   )
 }
