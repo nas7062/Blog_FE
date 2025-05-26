@@ -15,6 +15,11 @@ export const getAllPost = async (page = 0, limit = 3) => {
 }
 
 export const getByIdPost = async postId => {
-  const response = await axios.get(`${API_URL}/detail/${postId}`)
+  const response = await axios.get(`${API_URL}/post/${postId}`)
+  return response.data
+}
+
+export const deletePost = async postId => {
+  const response = await axios.delete(`${API_URL}/post/${postId}`)
   return response.data
 }

@@ -30,7 +30,6 @@ export const PostList = () => {
     [isLoading, hasNext]
   )
 
-  console.log(posts)
   useEffect(() => {
     const getPost = async () => {
       try {
