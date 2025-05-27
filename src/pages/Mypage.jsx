@@ -5,7 +5,7 @@ import { getUserFullData } from '../apis/mypageApi'
 import { Post } from '../components/Post'
 import { Comments } from '../components/Comments'
 import { formatDate } from '../utils/features'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Mypage = () => {
   const { nickname } = useSelector(state => state.user)
@@ -18,7 +18,7 @@ export const Mypage = () => {
   // 현재 로그인한 사용자 정보
   const currentUser = useSelector(state => state.user)
   const isCurrentUser = currentUser && currentUser.nickname === nickname
-
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchAllUserData = async () => {
       if (!nickname) return
@@ -39,6 +39,9 @@ export const Mypage = () => {
     fetchAllUserData()
   }, [nickname])
 
+  const moveUserUpdate = () => {
+    navigate('/userUpdate')
+  }
   if (loading) return <div>로딩 중...</div>
   if (!userData) return <div>사용자를 찾을 수 없습니다.</div>
 
@@ -51,7 +54,9 @@ export const Mypage = () => {
           <img src="https://picsum.photos/200/300" alt="" />
           <p>{nickname}</p>
           <div>
-            <button disabled={!isCurrentUser}>내 정보 수정</button>
+            <button disabled={!isCurrentUser} onClick={moveUserUpdate}>
+              내 정보 수정
+            </button>
           </div>
         </div>
       </section>

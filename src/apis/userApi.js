@@ -21,3 +21,8 @@ export const logoutUser = async () => {
   const response = await axios.post(`${API_URL}/logout`)
   return response.data
 }
+
+export const updateUser = async userData => {
+  const response = await axios.put(`${API_URL}/user/update`, userData)
+  return response.data
+}

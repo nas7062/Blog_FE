@@ -16,9 +16,9 @@ export const LoginPage = () => {
 
   const onSubmit = async data => {
     try {
-      const { _id, nickname } = await loginUser(data)
+      const { email, _id, nickname } = await loginUser(data)
       console.log(_id, nickname)
-      dispatch(setUser({ _id, nickname }))
+      dispatch(setUser({ email, _id, nickname }))
       setTimeout(() => {
         navigate('/')
       }, 300)

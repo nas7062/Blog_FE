@@ -7,7 +7,7 @@ import { clearUser, setUser } from '../store/userslice'
 
 export const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false)
-  const { _id, nickname } = useSelector(state => state.user)
+  const { email, _id, nickname } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const toggleMenu = () => {
     setIsMenuActive(prev => !prev)
@@ -22,7 +22,9 @@ export const Header = () => {
         const userData = await getUserProfile()
         if (userData) {
           // 이제 setUser 액션으로 id, nickname 둘 다 저장
-          dispatch(setUser({ _id: userData._id, nickname: userData.nickname }))
+          dispatch(
+            setUser({ _id: userData._id, nickname: userData.nickname, email: userData.email })
+          )
         } else {
           dispatch(clearUser())
         }

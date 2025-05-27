@@ -7,6 +7,7 @@ import { PostList } from '../pages/PostList'
 import DetailPage from '../pages/DetailPage'
 import EditPost from '../pages/EditPost'
 import Mypage from '../pages/Mypage'
+import UserUpdate from '../pages/UserUpdate'
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: '/mypage',
         element: <Mypage />,
+      },
+      {
+        path: '/userUpdate',
+        element: <UserUpdate />,
       },
     ],
   },
