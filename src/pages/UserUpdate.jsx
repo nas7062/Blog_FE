@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import css from './UserUpdate.module.css'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { updateUser } from '../apis/userApi'
 const UserUpdate = () => {
   const {
     register,
@@ -30,7 +31,18 @@ const UserUpdate = () => {
     }
   }, [user, reset])
   const onSubmit = async data => {
-    console.log(data)
+    try {
+      const newUser = {
+        email: data.email,
+        nickname: data.nickname,
+        password: data.password,
+      }
+      await updateUser(newUser)
+      navigate('/mypage') // 성공 시 마이페이지 등으로 이동
+    } catch (error) {
+      console.error('정보 변경 실패:', error)
+      alert('정보 변경 중 오류가 발생했습니다.')
+    }
   }
   return (
     <main>
@@ -40,6 +52,7 @@ const UserUpdate = () => {
         <input
           type="email"
           placeholder="이메일"
+          readOnly
           {...register('email', {
             required: '이메일을 입력해주세요',
             pattern: {

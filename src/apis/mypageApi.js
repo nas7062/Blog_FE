@@ -15,4 +15,3 @@ export const getUserFullData = async nickname => {
     throw err
   }
 }
-
