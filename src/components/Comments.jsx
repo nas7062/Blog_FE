@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import css from './comments.module.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { createComment, deleteComment, getComment } from '../apis/commentApi'
+import { createComment, deleteComment, getComment, updateComment } from '../apis/commentApi'
 import { formatDate } from '../utils/features'
 
 export const Comments = ({ postId }) => {
@@ -10,6 +10,10 @@ export const Comments = ({ postId }) => {
   const [newComment, setNewComment] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [comments, setComments] = useState([])
+  // 수정모드
+  const [editingCommentId, setEditingCommentId] = useState(null)
+  const [editContent, setEditContent] = useState('')
+
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -56,6 +60,42 @@ export const Comments = ({ postId }) => {
       console.log(error)
     }
   }
+
+  const handleEditMode = comment => {
+    setEditingCommentId(comment._id)
+    setEditContent(comment.content)
+  }
+  const handleNomalMode = () => {
+    setEditingCommentId(null)
+    setEditContent('')
+  }
+  // 댓글 수정 완료
+  const handleUpdateComment = async commentId => {
+    if (!editContent) {
+      alert('댓글 내용을 입력하세요')
+      return
+    }
+
+    try {
+      setIsLoading(true)
+      // 댓글 수정 API 호출
+      await updateComment(commentId, editContent)
+      // 댓글 목록 업데이트
+      setComments(prevComments =>
+        prevComments.map(comment =>
+          comment._id === commentId ? { ...comment, content: editContent } : comment
+        )
+      )
+
+      // 수정 모드 종료
+      setEditingCommentId(null)
+      setEditContent('')
+      setIsLoading(false)
+    } catch (error) {
+      console.error('댓글 수정 실패:', error)
+      setIsLoading(false)
+    }
+  }
   return (
     <section className={css.comments}>
       {nickname ? (
@@ -80,16 +120,41 @@ export const Comments = ({ postId }) => {
         {comments.length !== 0 ? (
           comments.map(comment => (
             <li key={comment._id} className={css.list}>
-              <div className={css.commnet}>
-                <p className={css.author}>{comment.author}</p>
-                <p className={css.date}>{formatDate(comment.createdAt)}</p>
-                <p className={css.text}>{comment.content}</p>
-              </div>
-              {nickname === comment.author && (
-                <div className={css.btns}>
-                  <button>수정</button>
-                  <button onClick={() => handleDelete(comment._id)}>삭제</button>
-                </div>
+              {editingCommentId === comment._id ? (
+                <>
+                  <div className={css.commnet}>
+                    <p className={css.author}>{comment.author}</p>
+                    <p className={css.date}>{formatDate(comment.createdAt)}</p>
+                    <textarea
+                      value={editContent}
+                      onChange={e => setEditContent(e.target.value)}
+                      className={css.text}
+                      disabled={isLoading}
+                    ></textarea>
+                  </div>
+                  <div className={css.btns}>
+                    <button disabled={isLoading} onClick={() => handleUpdateComment(comment._id)}>
+                      수정완료
+                    </button>
+                    <button onClick={handleNomalMode} disabled={isLoading}>
+                      취소
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={css.commnet}>
+                    <p className={css.author}>{comment.author}</p>
+                    <p className={css.date}>{formatDate(comment.createdAt)}</p>
+                    <p className={css.text}>{comment.content}</p>
+                  </div>
+                  {nickname === comment.author && (
+                    <div className={css.btns}>
+                      <button onClick={() => handleEditMode(comment)}>수정</button>
+                      <button onClick={() => handleDelete(comment._id)}>삭제</button>
+                    </div>
+                  )}
+                </>
               )}
             </li>
           ))
