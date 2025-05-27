@@ -71,7 +71,7 @@ export const Comments = ({ postId }) => {
   }
   // 댓글 수정 완료
   const handleUpdateComment = async commentId => {
-    if (!editContent) {
+    if (!editContent.content.trim()) {
       alert('댓글 내용을 입력하세요')
       return
     }
@@ -86,10 +86,7 @@ export const Comments = ({ postId }) => {
           comment._id === commentId ? { ...comment, content: editContent } : comment
         )
       )
-
-      // 수정 모드 종료
-      setEditingCommentId(null)
-      setEditContent('')
+      handleNomalMode()
       setIsLoading(false)
     } catch (error) {
       console.error('댓글 수정 실패:', error)
