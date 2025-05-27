@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import css from './UserUpdate.module.css'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateUser } from '../apis/userApi'
+import { setNickname } from '../store/userslice'
 const UserUpdate = () => {
   const {
     register,
@@ -13,6 +14,7 @@ const UserUpdate = () => {
     formState: { errors, isSubmitting },
   } = useForm({ mode: 'onBlur' })
   const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const password = watch('password') //현재 비밀번호 필드 값
   useEffect(() => {
@@ -38,7 +40,10 @@ const UserUpdate = () => {
         password: data.password,
       }
       await updateUser(newUser)
-      navigate('/mypage') // 성공 시 마이페이지 등으로 이동
+      dispatch(setNickname(data.nickname))
+      setTimeout(() => {
+        navigate('/mypage')
+      }, 300)
     } catch (error) {
       console.error('정보 변경 실패:', error)
       alert('정보 변경 중 오류가 발생했습니다.')
@@ -101,7 +106,7 @@ const UserUpdate = () => {
         {errors.passwordConfirm && <strong>{errors.passwordConfirm.message}</strong>}
 
         <button type="submit" disabled={isSubmitting}>
-          가입하기
+          변경하기
         </button>
       </form>
     </main>

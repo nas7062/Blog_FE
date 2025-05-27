@@ -18,7 +18,10 @@ export const user = createSlice({
       state.nickname = null
       state.email = null
     },
+    setNickname: (state, action) => {
+      state.nickname = action.payload
+    },
   },
 })
 
-export const { setUser, clearUser } = user.actions
+export const { setUser, clearUser, setNickname } = user.actions
