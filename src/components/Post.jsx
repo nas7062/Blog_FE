@@ -10,7 +10,6 @@ export const Post = ({ post }) => {
   const moveDetail = postId => {
     navigate(`/detail/${postId}`)
   }
-
   return (
     <div key={post._id} className={css.box} onClick={() => moveDetail(post._id)}>
       <div className={css.imgwrap}>
@@ -27,7 +26,7 @@ export const Post = ({ post }) => {
       </div>
       <div className={css.plus}>
         <LikeButton postId={post._id} likes={post.likes} />
-        <p>댓글 : 0 </p>
+        <p>댓글 : {post.commentCount} </p>
       </div>
     </div>
   )

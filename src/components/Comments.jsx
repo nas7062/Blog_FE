@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { createComment, deleteComment, getComment, updateComment } from '../apis/commentApi'
 import { formatDate } from '../utils/features'
 
-export const Comments = ({ postId }) => {
+export const Comments = ({ postId, updateCommentCount }) => {
   const { nickname } = useSelector(state => state.user)
   const [newComment, setNewComment] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -19,12 +19,15 @@ export const Comments = ({ postId }) => {
       try {
         const response = await getComment(postId)
         setComments(response)
+        if (updateCommentCount) {
+          updateCommentCount(response.length)
+        }
       } catch (error) {
         console.error('댓글 목록 조회 실패:', error)
       }
     }
     fetchComments()
-  }, [postId])
+  }, [postId, updateCommentCount])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -44,6 +47,9 @@ export const Comments = ({ postId }) => {
       const updatedComments = await getComment(postId)
       setComments(updatedComments)
       setNewComment('')
+      if (updateCommentCount) {
+        updateCommentCount(updatedComments.length)
+      }
       setIsLoading(false)
     } catch (error) {
       console.error('댓글 등록 실패:', error)
@@ -54,7 +60,10 @@ export const Comments = ({ postId }) => {
   const handleDelete = async commentId => {
     try {
       console.log(commentId)
-      await deleteComment(commentId)
+      const response = await deleteComment(commentId)
+      if (updateCommentCount) {
+        updateCommentCount(response.length)
+      }
       setComments(prevComments => prevComments.filter(comment => comment._id !== commentId))
     } catch (error) {
       console.log(error)

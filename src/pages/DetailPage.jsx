@@ -12,10 +12,12 @@ const DetailPage = () => {
   const { nickname } = useSelector(state => state.user)
   const navigate = useNavigate()
   const { title, cover, content, summary, createdAt, author } = post
+  const [commentCount, setCommentCount] = useState(0)
   useEffect(() => {
     const getPost = async () => {
       const data = await getByIdPost(postId)
       setPost(data)
+      setCommentCount(data.commentCount)
     }
     getPost()
   }, [postId])
@@ -30,6 +32,9 @@ const DetailPage = () => {
         console.log('글 삭제 실패:', error)
       }
     }
+  }
+  const updateCommentCount = count => {
+    setCommentCount(count)
   }
   if (!post) return <div>loding...</div>
   return (
@@ -56,7 +61,8 @@ const DetailPage = () => {
         )}
         <Link to={'/'}>목록으로</Link>
       </div>
-      <Comments postId={postId} />
+      <span className={css.comment}>댓글수 : {commentCount}</span>
+      <Comments postId={postId} updateCommentCount={updateCommentCount} />
     </main>
   )
 }
