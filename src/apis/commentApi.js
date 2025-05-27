@@ -11,3 +11,8 @@ export const getComment = async postId => {
   const response = await axios.get(`${API_URL}/comments/${postId}`)
   return response.data
 }
+
+export const deleteComment = async commentId => {
+  const response = await axios.delete(`${API_URL}/comments/${commentId}`)
+  return response.data
+}

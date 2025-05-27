@@ -9,7 +9,7 @@
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
-  height: 250px;
+  min-height: 250px;
 }
 
 .imgwrap img {
@@ -43,7 +43,7 @@
   display: flex;
 }
 .btnarea {
-  width: 100%;  
+  width: 100%;
   padding: 0.5rem 0;
   display: flex;
   gap: 1rem;

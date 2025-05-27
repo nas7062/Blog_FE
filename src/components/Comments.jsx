@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import css from './comments.module.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { createComment, getComment } from '../apis/commentApi'
+import { createComment, deleteComment, getComment } from '../apis/commentApi'
 import { formatDate } from '../utils/features'
 
 export const Comments = ({ postId }) => {
@@ -46,6 +46,16 @@ export const Comments = ({ postId }) => {
       setIsLoading(false)
     }
   }
+
+  const handleDelete = async commentId => {
+    try {
+      console.log(commentId)
+      await deleteComment(commentId)
+      setComments(prevComments => prevComments.filter(comment => comment._id !== commentId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <section className={css.comments}>
       {nickname ? (
@@ -78,7 +88,7 @@ export const Comments = ({ postId }) => {
               {nickname === comment.author && (
                 <div className={css.btns}>
                   <button>수정</button>
-                  <button>삭제</button>
+                  <button onClick={() => handleDelete(comment._id)}>삭제</button>
                 </div>
               )}
             </li>

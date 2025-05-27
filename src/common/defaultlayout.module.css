@@ -3,5 +3,5 @@
   height: 100vh;
   margin: auto;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
