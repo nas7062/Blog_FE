@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
-import css from './registerpage.module.css'
+import css from './LoginPage.module.css'
 import { loginUser } from '../apis/userApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../store/userslice'
 import { useNavigate } from 'react-router-dom'
+import KakaoLoginBtn from '../components/KakaoLoginBtn'
 
 export const LoginPage = () => {
   const {
@@ -56,10 +57,11 @@ export const LoginPage = () => {
           })}
         />
         {errors.password && <strong>{errors.password.message}</strong>}
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting} className={css.loginbtn}>
           {isSubmitting ? '로그인 중...' : '로그인'}
         </button>
       </form>
+      <KakaoLoginBtn />
     </main>
   )
 }

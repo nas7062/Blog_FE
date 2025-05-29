@@ -3,12 +3,12 @@ axios.defaults.withCredentials = true
 const API_URL = import.meta.env.VITE_API_URL
 
 export const createPost = async data => {
-  const response = await axios.post(`${API_URL}/createpost`, data)
+  const response = await axios.post(`${API_URL}/post/create`, data)
   return response.data
 }
 
 export const getAllPost = async (page = 0, limit = 3) => {
-  const response = await axios.get(`${API_URL}/postlist`, {
+  const response = await axios.get(`${API_URL}/post/list`, {
     params: { page, limit },
   })
   return response.data
@@ -30,6 +30,6 @@ export const updatePost = async (postId, postData) => {
 }
 
 export const toggleLike = async postId => {
-  const response = await axios.post(`${API_URL}/like/${postId}`)
+  const response = await axios.post(`${API_URL}/post/like/${postId}`)
   return response.data
 }
