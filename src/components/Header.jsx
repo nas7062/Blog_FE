@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile, logoutUser } from '../apis/userApi'
 import { clearUser, setUser } from '../store/userslice'
+import { throttle } from '../utils/features'
 
 export const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false)
@@ -46,13 +47,29 @@ export const Header = () => {
     }
   }
 
+  const handleResize = throttle(() => {
+    // 800이상이면 저절로 닫혀지게
+    if (window.innerWidth > 800) {
+      setIsMenuActive(false)
+    }
+  }, 1000)
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [handleResize])
+
   return (
     <header className={css.header}>
       <h1>
         <Link to={'/'}>10012</Link>
       </h1>
       <Hamburger isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
-      <nav className={css.gnbCon}>
+      <nav
+        className={`${css.gnbCon}  ${isMenuActive ? css.active : ''} ${!nickname ? css.noLogin : ''}`}
+      >
         <div className={css.gnb}>
           {!nickname ? (
             <>
@@ -61,8 +78,8 @@ export const Header = () => {
             </>
           ) : (
             <>
-              <div>{nickname}님 환영합니다</div>
-              <div onClick={handleLogout}>로그아웃</div>
+              <span>{nickname}님 환영합니다!</span>
+              <span onClick={handleLogout}>로그아웃</span>
               <MenuLike to="/createPost" label="글쓰기" closeMenu={closeMenu} />
               <MenuLike to="/mypage" label="마이페이지" closeMenu={closeMenu} />
             </>

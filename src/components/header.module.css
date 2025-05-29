@@ -2,9 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #eaeaea;
+  background-color: rgb(180, 226, 253);
   padding: 0.5rem;
   position: relative;
+  color: white;
+  border-radius: 8px;
 }
 
 .hamburger {
@@ -18,7 +20,8 @@
   z-index: 100;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
 }
@@ -28,52 +31,80 @@
   height: 20px;
 }
 
-.gnbCon {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0px);
-  pointer-events: none;
-  transition:
-    background-color 0.3s,
-    backdrop-filter 0.3s;
-  z-index: 90;
+.noLogin .gnb {
+  width: 350px;
+  justify-content: space-around;
 }
-
+/* 공통 스타일 */
 .gnb {
-  position: absolute;
-  top: 0;
-  right: -50%;
-  width: 50%;
-  height: 100%;
-  background-color: aliceblue;
-  padding: 5rem 1rem 0 1rem;
-  transition: right 0.3s ease-in-out;
-  z-index: 95;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.hamburger.active + .gnbCon {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  pointer-events: auto;
+/* 720px 이하에서 기본적으로 gnb 숨김, 오른쪽 off-screen */
+@media (max-width: 720px) {
+  .gnbCon {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    pointer-events: none;
+    transition:
+      background-color 0.3s,
+      backdrop-filter 0.3s;
+    z-index: 90;
+  }
+
+  .gnb {
+    position: absolute;
+    top: 0;
+    right: -70%;
+    width: 55%;
+    height: 100vh;
+    background-color: rgb(180, 226, 253);
+    padding: 5rem 1rem 0 1rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .gnbCon.active {
+    background-color: rgba(0, 0, 0, 0.295);
+    pointer-events: auto;
+  }
+
+  .gnbCon.active .gnb {
+    right: 0; /* 메뉴 등장 */
+  }
+  .noLogin .gnb {
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 
-.hamburger.active + .gnbCon .gnb {
-  right: 0;
-}
+/* 720px 이상에서는 햄버거 숨김*/
+@media (min-width: 721px) {
+  .hamburger {
+    display: none;
+  }
 
-.gnb a {
-  display: block;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: #333;
-}
-
-.gnb a.active {
-  background-color: #aaaaaa;
-  border-radius: 30px;
-  color: white;
+  .gnb {
+    position: relative;
+    width: 600px;
+    height: auto;
+    flex-direction: row;
+  }
 }
