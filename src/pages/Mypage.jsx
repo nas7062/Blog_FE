@@ -74,8 +74,8 @@ export const Mypage = () => {
         {userComments.length > 0 ? (
           <ul className={css.commentList}>
             {userComments.map(comment => (
-              <Link to={`/detail/${comment.postId}`}>
-                <li key={comment._id} className={css.commentCard}>
+              <Link to={`/detail/${comment.postId}`} key={comment._id}>
+                <li className={css.commentCard}>
                   <p className={css.commentContent}>{comment.content}</p>
                   <div className={css.commentMeta}>
                     <p>작성일:{formatDate(comment.createdAt)}</p>

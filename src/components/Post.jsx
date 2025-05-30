@@ -11,7 +11,7 @@ export const Post = ({ post }) => {
     navigate(`/detail/${postId}`)
   }
   return (
-    <div key={post._id} className={css.box} onClick={() => moveDetail(post._id)}>
+    <div className={css.box} onClick={() => moveDetail(post._id)}>
       <div className={css.imgwrap}>
         <img src={`${import.meta.env.VITE_API_URL}/${cover}`} alt={title} />
       </div>

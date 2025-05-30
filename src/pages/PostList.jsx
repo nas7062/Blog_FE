@@ -3,6 +3,7 @@ import { Post } from '../components/Post'
 import { getAllPost } from '../apis/postApi'
 import css from './PostList.module.css'
 import { SearchContext } from '../common/DefaultLayout'
+import CircularText from '../components/CircularText'
 export const PostList = () => {
   const searchPosts = useContext(SearchContext)
   const [posts, setPosts] = useState([])
@@ -45,17 +46,19 @@ export const PostList = () => {
 
     const getPost = async () => {
       try {
-        setIsLoading(true)
-        scrollPosition.current = window.scrollY // 🔥 스크롤 위치 저장
-        const { posts: newPosts, hasNext: more } = await getAllPost(page)
-        setPosts(prev => (page === 0 ? newPosts : [...prev, ...newPosts]))
-        setHasNext(more)
+        setTimeout(async () => {
+          setIsLoading(true)
+          scrollPosition.current = window.scrollY // 스크롤 위치 저장
+          const { posts: newPosts, hasNext: more } = await getAllPost(page)
+          setPosts(prev => (page === 0 ? newPosts : [...prev, ...newPosts]))
+          setHasNext(more)
+        }, 1000)
       } catch (error) {
         console.log(error)
       } finally {
         setIsLoading(false)
         setTimeout(() => {
-          window.scrollTo(0, scrollPosition.current) // 🔥 위치 복원
+          window.scrollTo(0, scrollPosition.current) //위치 복원
         }, 0)
       }
     }
@@ -68,17 +71,27 @@ export const PostList = () => {
       <ul className={css.postlist}>
         {searchPosts && searchPosts.length > 0
           ? searchPosts.map(post => (
-              <li key={post._id}>
+              <li key={`search_${post._id}`}>
                 <Post post={post} />
               </li>
             ))
           : posts.map((post, idx) => (
-              <li key={post._id} ref={idx === posts.length - 1 ? lastPostElementRef : null}>
+              <li
+                key={`post_${post._id}_${idx}`}
+                ref={idx === posts.length - 1 ? lastPostElementRef : null}
+              >
                 <Post post={post} />
               </li>
             ))}
       </ul>
-      {isLoading && <div>loading...</div>}
+      {!isLoading && (
+        <CircularText
+          text="10012BLOG10012BLOG"
+          onHover="speedUp"
+          spinDuration={5}
+          className="custom-class"
+        />
+      )}
     </main>
   )
 }
