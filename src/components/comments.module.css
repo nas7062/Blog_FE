@@ -33,7 +33,8 @@
 }
 
 .author {
-  color: dodgerblue;
+  color: rgb(90, 173, 255);
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   padding-right: 0.5rem;

@@ -26,8 +26,8 @@
   gap: 5px;
   text-align: center;
 }
-.title,
-.summary,
+.titlewrap .title,
+.titlewrap .summary,
 .content {
   min-width: 0; /* Flex/Grid에서 줄어들 수 있게 */
   max-width: 100%; /* 부모 요소 너비 제한 */
@@ -39,6 +39,7 @@
 
 .title,
 .summary {
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -66,13 +67,15 @@
 }
 
 .content {
-  width: 100%;
   margin-top: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 5;
   -webkit-line-clamp: 5;
+  text-overflow: ellipsis;
+  line-height: 1.4; /* 줄 간격 설정 */
+  max-height: calc(1.4em * 5); /* 총 높이 제한 */
 }
 
 .plus {

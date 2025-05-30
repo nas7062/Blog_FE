@@ -80,7 +80,8 @@ export const Comments = ({ postId, updateCommentCount }) => {
   }
   // 댓글 수정 완료
   const handleUpdateComment = async commentId => {
-    if (!editContent.content.trim()) {
+    console.log(editContent)
+    if (editContent.length === 0) {
       alert('댓글 내용을 입력하세요')
       return
     }
