@@ -99,7 +99,7 @@
     z-index: 90;
   }
 
-  .gnb {
+  .gnbCon .gnb {
     position: absolute;
     top: 0;
     right: -100%;
