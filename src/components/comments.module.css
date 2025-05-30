@@ -13,6 +13,11 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: #eaeaea;
+  transition: 0.3s;
+}
+.comments form button:hover {
+  background-color: grey;
+  color: white;
 }
 
 .list {
@@ -55,6 +60,12 @@
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
   background-color: #eaeaea;
+  transition: 0.3s;
+}
+
+.btns button:hover {
+  background-color: grey;
+  color: white;
 }
 .logMessage {
   padding: 1rem 0.5rem;

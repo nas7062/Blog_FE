@@ -1,6 +1,6 @@
 .postlist {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
