@@ -7,9 +7,9 @@ import { clearUser, setUser } from '../store/userslice'
 import { throttle } from '../utils/features'
 import React from 'react'
 
-export const Header = ({ setSearch }) => {
+export const Header = ({ setSearch, search }) => {
   const [isMenuActive, setIsMenuActive] = useState(false)
-  const { email, _id, nickname } = useSelector(state => state.user)
+  const { _id, nickname } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const toggleMenu = () => {
     setIsMenuActive(prev => !prev)
@@ -74,13 +74,17 @@ export const Header = ({ setSearch }) => {
         className={`${css.gnbCon}  ${isMenuActive ? css.active : ''} ${!nickname ? css.noLogin : ''}`}
       >
         <div className={css.gnb}>
-          <input
-            className={css.searchinput}
-            type="text"
-            placeholder="게시물을 검색해주세요"
-            onChange={e => setSearch(e.target.value)}
-          />
-          <i className={`fa-solid fa-magnifying-glass  ${css.search}`}></i>
+          <div className={css.inputwrap}>
+            <input
+              className={css.searchinput}
+              type="text"
+              value={search}
+              placeholder="게시물을 검색해주세요"
+              onChange={e => setSearch(e.target.value)}
+            />
+            <i className={`fa-solid fa-magnifying-glass  ${css.search}`}></i>
+          </div>
+
           {!nickname ? (
             <>
               <MenuLike to="/register" label="회원가입" closeMenu={closeMenu} />

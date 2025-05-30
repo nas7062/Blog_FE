@@ -60,11 +60,18 @@
 .gnb span:hover {
   color: blue;
 }
+.inputwrap {
+  position: relative;
+}
 
 .search {
+  position: absolute;
   font-size: 24px;
   cursor: pointer;
   transition: 0.5s ease;
+  color: rgb(180, 226, 253);
+  right: 2%;
+  bottom: 10%;
 }
 
 .search:hover {

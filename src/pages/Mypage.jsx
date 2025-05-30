@@ -14,7 +14,7 @@ export const Mypage = () => {
   const [userComments, setUserComments] = useState([])
   const [userLikes, setUserLikes] = useState([])
   const [loading, setLoading] = useState(false)
-
+  console.log(userData)
   // 현재 로그인한 사용자 정보
   const currentUser = useSelector(state => state.user)
   const isCurrentUser = currentUser && currentUser.nickname === nickname
@@ -42,6 +42,7 @@ export const Mypage = () => {
   const moveUserUpdate = () => {
     navigate('/userUpdate')
   }
+  console.log(userComments)
   if (loading) return <div>로딩 중...</div>
   if (!userData) return <div>사용자를 찾을 수 없습니다.</div>
 
@@ -51,7 +52,7 @@ export const Mypage = () => {
       <section>
         <h3>사용자정보</h3>
         <div className={css.userInfo}>
-          <img src="https://picsum.photos/200/300" alt="" />
+          <img src={userData.profileImage || 'https://picsum.photos/200/300'} alt="" />
           <p>{nickname}</p>
           <div>
             <button disabled={!isCurrentUser} onClick={moveUserUpdate}>
@@ -61,7 +62,7 @@ export const Mypage = () => {
         </div>
       </section>
       <section>
-        <h3>사용자가 작성한 글</h3>
+        <h3>사용자가 작성한 글 </h3>
         <ul className={css.postList}>
           {userPosts.map(post => (
             <li className={css.postCard} key={post._id}>
@@ -71,17 +72,18 @@ export const Mypage = () => {
         </ul>
       </section>
       <section>
-        <h3>사용자가 작성한 댓글</h3>
+        <h3>사용자가 작성한 댓글 </h3>
         {userComments.length > 0 ? (
           <ul className={css.commentList}>
             {userComments.map(comment => (
-              <li key={comment._id} className={css.commentCard}>
-                <p className={css.commentContent}>{comment.content}</p>
-                <div className={css.commentMeta}>
-                  <Link to={`/detail/${comment.postId}`}>원문 보기</Link>
-                  <p>작성일:{formatDate(comment.createdAt)}</p>
-                </div>
-              </li>
+              <Link to={`/detail/${comment.postId}`}>
+                <li key={comment._id} className={css.commentCard}>
+                  <p className={css.commentContent}>{comment.content}</p>
+                  <div className={css.commentMeta}>
+                    <p>작성일:{formatDate(comment.createdAt)}</p>
+                  </div>
+                </li>
+              </Link>
             ))}
           </ul>
         ) : (

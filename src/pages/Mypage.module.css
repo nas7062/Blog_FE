@@ -1,6 +1,11 @@
 .container > h2 {
   text-align: center;
 }
+
+section {
+  margin: 2rem;
+}
+
 .userInfo {
   display: flex;
   flex-direction: column;
@@ -13,4 +18,43 @@
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 10px rgb(128, 128, 128);
+}
+
+.postList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.commentList {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.commentCard {
+  padding: 1rem 1rem;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: rgba(248, 244, 244, 0.425);
+  transition: 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.commentCard:hover {
+  background-color: rgba(133, 201, 247, 0.233);
+}
+.commentContent {
+  margin-top: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  text-overflow: ellipsis;
+  line-height: 1.4; /* 줄 간격 설정 */
+  max-height: calc(1.4em * 5); /* 총 높이 제한 */
 }

@@ -3,17 +3,17 @@
   height: 300px;
   display: grid;
   grid-template-columns: minmax(290px, 1fr) 1fr;
-  grid-template-rows: 50px 1fr 50px;
+  grid-template-rows: 60px 1fr 50px;
   cursor: pointer;
   overflow: hidden;
-  background-color: rgb(219, 232, 233);
+  background-color: rgba(248, 244, 244, 0.425);
   border-radius: 15px;
 }
 
 .box:hover {
   margin-top: 5px;
   box-shadow: 5px 5px 3px rgba(199, 192, 224, 0.619);
-  background-color: rgba(60, 83, 235, 0.552);
+  background-color: rgba(133, 201, 247, 0.233);
 }
 
 .imgwrap {
@@ -31,8 +31,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  margin-top: 10px;
   text-align: center;
+  gap: 10px;
 }
 .titlewrap .title,
 .titlewrap .summary,
