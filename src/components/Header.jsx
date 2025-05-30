@@ -64,7 +64,9 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <h1>
-        <Link to={'/'}>10012</Link>
+        <Link to={'/'} className={css.logo}>
+          10012
+        </Link>
       </h1>
       <Hamburger isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
       <nav

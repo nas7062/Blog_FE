@@ -9,6 +9,13 @@
   border-radius: 8px;
 }
 
+.logo {
+  transition: 0.5s;
+}
+
+.logo:hover {
+  color: blue;
+}
 .hamburger {
   position: absolute;
   top: 1rem;
@@ -42,6 +49,16 @@
   align-items: center;
 }
 
+.gnb a,
+.gnb span {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.gnb a:hover,
+.gnb span:hover {
+  color: blue;
+}
 /* 720px 이하에서 기본적으로 gnb 숨김, 오른쪽 off-screen */
 @media (max-width: 720px) {
   .gnbCon {
