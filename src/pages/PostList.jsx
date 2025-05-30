@@ -47,7 +47,6 @@ export const PostList = () => {
     }
     getPost()
   }, [page])
-  if (searchPosts) console.log(searchPosts)
   if (isLoading) return <div>loding...</div>
   return (
     <main>
