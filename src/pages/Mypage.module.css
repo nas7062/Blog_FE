@@ -22,12 +22,22 @@ section {
 
 .postList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+}
+
+.update {
+  font-size: 1.1rem;
+  transition: 0.3s ease;
+  color: gray;
+}
+.update:hover {
+  font-size: 1.2rem;
+  color: blue;
 }
 
 .commentList {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 

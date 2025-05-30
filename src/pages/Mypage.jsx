@@ -41,20 +41,19 @@ export const Mypage = () => {
   const moveUserUpdate = () => {
     navigate('/userUpdate')
   }
-  console.log(userLikes)
   if (loading) return <div>로딩 중...</div>
   if (!userData) return <div>사용자를 찾을 수 없습니다.</div>
 
   return (
     <main className={css.container}>
-      <h2>사용자페이지</h2>
+      <h2>마이페이지</h2>
       <section>
         <h3>사용자정보</h3>
         <div className={css.userInfo}>
           <img src={userData.profileImage || 'https://picsum.photos/200/300'} alt="" />
           <p>{nickname}</p>
           <div>
-            <button disabled={!isCurrentUser} onClick={moveUserUpdate}>
+            <button className={css.update} disabled={!isCurrentUser} onClick={moveUserUpdate}>
               내 정보 수정
             </button>
           </div>

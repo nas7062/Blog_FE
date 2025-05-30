@@ -27,6 +27,7 @@
   z-index: 100;
   border: none;
   cursor: pointer;
+
   display: none;
   /*display: flex;*/
   justify-content: center;
@@ -83,6 +84,7 @@
   height: 30px;
   border: none;
   outline: none;
+  border-radius: 6px;
 }
 
 .searchinput:focus {
