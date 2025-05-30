@@ -34,3 +34,8 @@ h2 {
 .like {
   cursor: pointer;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+}

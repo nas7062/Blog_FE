@@ -26,7 +26,7 @@ export const Post = ({ post }) => {
       </div>
       <div className={css.plus}>
         <LikeButton postId={post._id} likes={post.likes} />
-        <p>댓글 : {post.commentCount} </p>
+        <p>댓글 : {post.commentCount ? post.commentCount : '없음'} </p>
       </div>
     </div>
   )

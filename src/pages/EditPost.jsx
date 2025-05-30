@@ -87,7 +87,7 @@ const EditPost = () => {
             required: '제목을 입력해주세요',
           })}
         />
-        {errors.title && <strong>{errors.title.message}</strong>}
+        {errors.title && <strong className="error">{errors.title.message}</strong>}
         <label htmlFor="">요약내용</label>
         <input
           type="text"
@@ -95,7 +95,7 @@ const EditPost = () => {
             required: '요약내용을 입력해주세요',
           })}
         />
-        {errors.summary && <strong>{errors.summary.message}</strong>}
+        {errors.summary && <strong className="error">{errors.summary.message}</strong>}
         <label htmlFor="file">파일</label>
         <input id="file" type="file" accept="image/*" {...register('file')} />
         <label htmlFor="content">내용</label>
@@ -114,7 +114,7 @@ const EditPost = () => {
             )}
           />
         </div>
-        {errors.content && <div className={css.error}>{errors.content.message}</div>}
+        {errors.content && <div className="error">{errors.content.message}</div>}
         <button disabled={isSubmitting} type="submit">
           수정하기
         </button>

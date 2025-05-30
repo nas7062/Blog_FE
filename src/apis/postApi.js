@@ -7,7 +7,7 @@ export const createPost = async data => {
   return response.data
 }
 
-export const getAllPost = async (page = 0, limit = 3) => {
+export const getAllPost = async (page = 0, limit = 2) => {
   const response = await axios.get(`${API_URL}/post/list`, {
     params: { page, limit },
   })

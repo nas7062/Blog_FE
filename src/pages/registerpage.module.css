@@ -20,9 +20,23 @@
   font-weight: normal;
   font-size: 0.75em;
 }
-.container button {
-  padding: 1em;
-  background-color: lightskyblue;
-  border-radius: 1em;
+
+.loginbtn {
+  background-color: rgb(187, 225, 248);
+  border-radius: 12px;
   align-self: center;
+  width: 300px;
+  padding: 0.5rem 1rem;
+  font-size: 1.5em;
+  margin: 10px auto;
+  transition: 0.5s ease;
+}
+
+.loginbtn:hover {
+  background-color: rgba(0, 89, 255, 0.481);
+  color: white;
+}
+.kakao {
+  display: flex;
+  justify-content: center;
 }

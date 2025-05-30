@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import css from './registerpage.module.css'
 import { registerUser } from '../apis/userApi'
 import { useNavigate } from 'react-router-dom'
+import KakaoLoginBtn from '../components/KakaoLoginBtn'
 
 export const RegisterPage = () => {
   const {
@@ -42,7 +43,7 @@ export const RegisterPage = () => {
             },
           })}
         />
-        {errors.email && <strong>{errors.email.message}</strong>}
+        {errors.email && <strong className="error">{errors.email.message}</strong>}
         {/* 닉네임 */}
         <input
           type="text"
@@ -55,7 +56,7 @@ export const RegisterPage = () => {
             },
           })}
         />
-        {errors.nickname && <strong>{errors.nickname.message}</strong>}
+        {errors.nickname && <strong className="error">{errors.nickname.message}</strong>}
         {/* 비밀번호 */}
         <input
           type="password"
@@ -68,7 +69,7 @@ export const RegisterPage = () => {
             },
           })}
         />
-        {errors.password && <strong>{errors.password.message}</strong>}
+        {errors.password && <strong className="error">{errors.password.message}</strong>}
 
         {/* 비밀번호 확인 */}
         <input
@@ -79,12 +80,17 @@ export const RegisterPage = () => {
             validate: value => value === password || '비밀번호가 일치하지 않습니다',
           })}
         />
-        {errors.passwordConfirm && <strong>{errors.passwordConfirm.message}</strong>}
+        {errors.passwordConfirm && (
+          <strong className="error">{errors.passwordConfirm.message}</strong>
+        )}
 
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting} className={css.loginbtn}>
           가입하기
         </button>
       </form>
+      <div className={css.kakao}>
+        <KakaoLoginBtn />
+      </div>
     </main>
   )
 }

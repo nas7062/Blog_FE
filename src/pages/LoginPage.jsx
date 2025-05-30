@@ -43,7 +43,7 @@ export const LoginPage = () => {
             },
           })}
         />
-        {errors.email && <strong>{errors.email.message}</strong>}
+        {errors.email && <strong className="error">{errors.email.message}</strong>}
         {/* 비밀번호 */}
         <input
           type="password"
@@ -56,12 +56,14 @@ export const LoginPage = () => {
             },
           })}
         />
-        {errors.password && <strong>{errors.password.message}</strong>}
+        {errors.password && <strong className="error">{errors.password.message}</strong>}
         <button type="submit" disabled={isSubmitting} className={css.loginbtn}>
           {isSubmitting ? '로그인 중...' : '로그인'}
         </button>
       </form>
-      <KakaoLoginBtn />
+      <div className={css.kakao}>
+        <KakaoLoginBtn />
+      </div>
     </main>
   )
 }

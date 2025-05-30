@@ -1,5 +1,5 @@
 import kakaoLoginImage from '../assets/kakao_login.png'
-const API_URL = import.meta.env.VITE_BACK_URL
+const API_URL = import.meta.env.VITE_API_URL
 
 const KakaoLoginBtn = () => {
   const handleKakaoLogin = () => {
