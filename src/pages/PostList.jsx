@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Post } from '../components/Post'
 import { getAllPost } from '../apis/postApi'
 import css from './PostList.module.css'
-export const PostList = () => {
+export const PostList = ({ searchposts }) => {
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
@@ -45,14 +45,22 @@ export const PostList = () => {
     }
     getPost()
   }, [page])
+  console.log(searchposts)
+  if (isLoading) return <div>loding...</div>
   return (
     <main>
-      <ul ref={listRef} className={css.postlist}>
-        {posts.map((post, idx) => (
-          <li key={post._id} ref={idx === posts.length - 1 ? lastPostElementRef : null}>
-            <Post post={post} />
-          </li>
-        ))}
+      <ul className={css.postlist} ref={listRef}>
+        {searchposts
+          ? searchposts.map(post => (
+              <li key={post._id}>
+                <Post post={post} />
+              </li>
+            ))
+          : posts.map((post, idx) => (
+              <li key={post._id} ref={idx === posts.length - 1 ? lastPostElementRef : null}>
+                <Post post={post} />
+              </li>
+            ))}
       </ul>
     </main>
   )

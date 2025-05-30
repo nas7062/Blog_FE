@@ -33,3 +33,8 @@ export const toggleLike = async postId => {
   const response = await axios.post(`${API_URL}/post/like/${postId}`)
   return response.data
 }
+
+export const searchPost = async search => {
+  const response = await axios.post(`${API_URL}/post/${search}`)
+  return response.data
+}

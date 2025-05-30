@@ -38,15 +38,16 @@
   height: 20px;
 }
 
-.noLogin .gnb {
-  width: 350px;
+.noLogin.gnbCon .gnb {
+  width: 550px;
   justify-content: space-around;
 }
 /* 공통 스타일 */
-.gnb {
+.gnbCon .gnb {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 700px;
 }
 
 .gnb a,
@@ -59,6 +60,28 @@
 .gnb span:hover {
   color: blue;
 }
+
+.search {
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.search:hover {
+  color: blue;
+}
+
+.searchinput {
+  width: 250px;
+  height: 30px;
+  border: none;
+  outline: none;
+}
+
+.searchinput:focus {
+  box-shadow: 0 0 3px blue;
+}
+
 /* 720px 이하에서 기본적으로 gnb 숨김, 오른쪽 off-screen */
 @media (max-width: 720px) {
   .gnbCon {
@@ -79,7 +102,7 @@
   .gnb {
     position: absolute;
     top: 0;
-    right: -70%;
+    right: -100%;
     width: 55%;
     height: 100vh;
     background-color: rgb(180, 226, 253);
@@ -105,10 +128,11 @@
   .gnbCon.active .gnb {
     right: 0; /* 메뉴 등장 */
   }
-  .noLogin .gnb {
+  .noLogin.gnbCon .gnb {
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    width: 500px;
   }
 }
 

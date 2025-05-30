@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile, logoutUser } from '../apis/userApi'
 import { clearUser, setUser } from '../store/userslice'
 import { throttle } from '../utils/features'
+import React from 'react'
 
-export const Header = () => {
+export const Header = ({ setSearch }) => {
   const [isMenuActive, setIsMenuActive] = useState(false)
   const { email, _id, nickname } = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -73,6 +74,13 @@ export const Header = () => {
         className={`${css.gnbCon}  ${isMenuActive ? css.active : ''} ${!nickname ? css.noLogin : ''}`}
       >
         <div className={css.gnb}>
+          <input
+            className={css.searchinput}
+            type="text"
+            placeholder="게시물을 검색해주세요"
+            onChange={e => setSearch(e.target.value)}
+          />
+          <i className={`fa-solid fa-magnifying-glass  ${css.search}`}></i>
           {!nickname ? (
             <>
               <MenuLike to="/register" label="회원가입" closeMenu={closeMenu} />
