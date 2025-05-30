@@ -4,7 +4,7 @@ import './index.css'
 import css from './defaultlayout.module.css'
 import { useEffect, useState } from 'react'
 import { debounce } from '../utils/features'
-import { searchPost } from '../apis/postApi'
+import { getAllPost, searchPost } from '../apis/postApi'
 import { createContext } from 'react'
 
 export const SearchContext = createContext()
@@ -12,10 +12,10 @@ export const SearchContext = createContext()
 export const DefaultLayout = () => {
   const [search, setSearch] = useState('')
   const [searchposts, setSearchPosts] = useState([])
-
+  let result = ''
   const debouncedSearch = debounce(async search => {
-    if (!search) return
-    const result = await searchPost(search)
+    if (search.length === 0) result = await getAllPost()
+    else result = await searchPost(search)
     setSearchPosts(result)
   }, 500)
 
