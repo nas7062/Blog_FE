@@ -14,7 +14,6 @@ export const Mypage = () => {
   const [userComments, setUserComments] = useState([])
   const [userLikes, setUserLikes] = useState([])
   const [loading, setLoading] = useState(false)
-  console.log(userData)
   // 현재 로그인한 사용자 정보
   const currentUser = useSelector(state => state.user)
   const isCurrentUser = currentUser && currentUser.nickname === nickname
@@ -42,7 +41,7 @@ export const Mypage = () => {
   const moveUserUpdate = () => {
     navigate('/userUpdate')
   }
-  console.log(userComments)
+  console.log(userLikes)
   if (loading) return <div>로딩 중...</div>
   if (!userData) return <div>사용자를 찾을 수 없습니다.</div>
 
@@ -93,16 +92,10 @@ export const Mypage = () => {
       <section>
         <h3>사용자가 좋아요 클릭한 글</h3>
         {userLikes.length > 0 ? (
-          <ul className={css.likeList}>
+          <ul className={css.postList}>
             {userLikes.map(post => (
-              <li key={post._id} className={css.likeCard}>
-                <Link to={`/detail/${post._id}`}>
-                  {post.cover ? (
-                    <img src={`${import.meta.env.VITE_API_URL}/${post.cover}`} alt={post.title} />
-                  ) : (
-                    <img src="https://picsum.photos/200/300" alt="기본 이미지" />
-                  )}
-                </Link>
+              <li className={css.postCard} key={post._id}>
+                <Post post={post} />
               </li>
             ))}
           </ul>
