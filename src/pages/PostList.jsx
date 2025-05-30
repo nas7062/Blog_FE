@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { Post } from '../components/Post'
 import { getAllPost } from '../apis/postApi'
 import css from './PostList.module.css'
-export const PostList = ({ searchposts }) => {
+import { SearchContext } from '../common/DefaultLayout'
+export const PostList = () => {
+  const searchPosts = useContext(SearchContext)
   const [posts, setPosts] = useState([])
   const [page, setPage] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
@@ -45,13 +47,13 @@ export const PostList = ({ searchposts }) => {
     }
     getPost()
   }, [page])
-  console.log(searchposts)
+  if (searchPosts) console.log(searchPosts)
   if (isLoading) return <div>loding...</div>
   return (
     <main>
       <ul className={css.postlist} ref={listRef}>
-        {searchposts
-          ? searchposts.map(post => (
+        {searchPosts && searchPosts.length > 0
+          ? searchPosts.map(post => (
               <li key={post._id}>
                 <Post post={post} />
               </li>

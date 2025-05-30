@@ -5,6 +5,9 @@ import css from './defaultlayout.module.css'
 import { useEffect, useState } from 'react'
 import { debounce } from '../utils/features'
 import { searchPost } from '../apis/postApi'
+import { createContext } from 'react'
+
+export const SearchContext = createContext()
 
 export const DefaultLayout = () => {
   const [search, setSearch] = useState('')
@@ -20,10 +23,13 @@ export const DefaultLayout = () => {
     debouncedSearch(search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
+
   return (
-    <div className={css.defaultlayout}>
-      <Header setSearch={setSearch} />
-      <Outlet searchposts={searchposts} />
-    </div>
+    <SearchContext.Provider value={searchposts}>
+      <div className={css.defaultlayout}>
+        <Header setSearch={setSearch} />
+        <Outlet />
+      </div>
+    </SearchContext.Provider>
   )
 }
