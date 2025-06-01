@@ -6,6 +6,7 @@ import { formatDate } from '../utils/features'
 import { useSelector } from 'react-redux'
 import LikeButton from '../components/LikeButton'
 import { Comments } from '../components/Comments'
+import CircularText from '../components/CircularText'
 const DetailPage = () => {
   const { postId } = useParams()
   const [post, setPost] = useState('')
@@ -36,7 +37,15 @@ const DetailPage = () => {
   const updateCommentCount = count => {
     setCommentCount(count)
   }
-  if (!post) return <div>loding...</div>
+  if (!post)
+    return (
+      <CircularText
+        text="10012BLOG10012BLOG"
+        onHover="speedUp"
+        spinDuration={5}
+        className="custom-class"
+      />
+    )
   return (
     <main className={css.container}>
       <div className={css.imgwrap}>
