@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
-import css from './RegisterPage.module.css'
 import { registerUser } from '../apis/userApi'
 import { useNavigate } from 'react-router-dom'
 import KakaoLoginBtn from '../components/KakaoLoginBtn'
+import css from './RegisterPage.module.css'
 
 export const RegisterPage = () => {
   const {
