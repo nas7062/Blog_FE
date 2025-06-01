@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import css from './LoginPage.module.css'
+import css from './loginPage.module.css'
 import { loginUser } from '../apis/userApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../store/userslice'
