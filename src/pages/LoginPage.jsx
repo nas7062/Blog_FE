@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form'
-import css from './LoginPage.module.css'
 import { loginUser } from '../apis/userApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../store/userslice'
 import { useNavigate } from 'react-router-dom'
 import KakaoLoginBtn from '../components/KakaoLoginBtn'
-
+import css from './LoginPage.module.css'
 export const LoginPage = () => {
   const {
     register,
