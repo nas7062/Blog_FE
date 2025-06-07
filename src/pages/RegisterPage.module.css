@@ -1,7 +1,20 @@
+.registerpage {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(180, 226, 253, 0.249);
+  height: auto;
+  position: relative;
+  top: 100px;
+  border-radius: 2rem;
+}
+
+.registerpage h2 {
+  align-self: center;
+}
+
 .container {
   width: calc(100% - 2em);
-  margin: auto;
-
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -14,7 +27,7 @@
   outline: none;
 }
 .container input:focus {
-  background-color: lightblue;
+  background-color: rgba(173, 216, 230, 0.303);
 }
 .container strong {
   font-weight: normal;
@@ -33,10 +46,11 @@
 }
 
 .loginbtn:hover {
-  background-color: rgba(0, 89, 255, 0.481);
+  background-color: rgba(0, 89, 255, 0.285);
   color: white;
 }
 .kakao {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
