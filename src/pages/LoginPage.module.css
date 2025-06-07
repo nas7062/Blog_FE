@@ -1,12 +1,21 @@
 .loginpage {
   display: flex;
   flex-direction: column;
+  background-color: rgba(180, 226, 253, 0.249);
+  height: 400px;
+  position: relative;
+  top: 100px;
+  border-radius: 2rem;
+}
+
+.loginpage h2 {
+  align-self: center;
 }
 
 .container {
-  width: calc(100% - 2em);
+  width: calc(100% - 2rem);
   height: auto;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -17,9 +26,10 @@
   border-radius: 0.25em;
   border: 1px solid lightblue;
   outline: none;
+  transition: 0.5s ease;
 }
 .container input:focus {
-  background-color: rgba(173, 216, 230, 0.297);
+  background-color: rgba(173, 216, 230, 0.164);
 }
 .container strong {
   font-weight: normal;
@@ -37,12 +47,11 @@
 }
 
 .loginbtn:hover {
-  background-color: rgba(0, 89, 255, 0.481);
+  background-color: rgba(0, 89, 255, 0.349);
   color: white;
 }
 
 .kakao {
   display: flex;
   justify-content: center;
-  margin-right: 32px;
 }
